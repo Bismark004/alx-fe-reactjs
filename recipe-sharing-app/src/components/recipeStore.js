@@ -17,6 +17,26 @@ const useRecipeStore = create((set) => ({
       ),
     })),
 
+  // Action to update an existing recipe
+  updateRecipe: (updatedRecipe) =>
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      ),
+      filteredRecipes: state.filteredRecipes.map((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      ),
+    })),
+
+  // Action to delete a recipe
+  deleteRecipe: (recipeId) =>
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== recipeId),
+      filteredRecipes: state.filteredRecipes.filter(
+        (recipe) => recipe.id !== recipeId
+      ),
+    })),
+
   // Action to set the initial list of recipes
   setRecipes: (recipes) =>
     set(() => ({
