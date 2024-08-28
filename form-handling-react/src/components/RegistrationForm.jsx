@@ -1,42 +1,57 @@
 import {useState} from 'react';
 
-const registerationForm = () => {
-    const [formData, setFormData] = useState( {name: '', email: '', password: ''});
+const RegisterationForm = () => {
+    const [formData, setFormData] = useState( {username: '', email: '', password: ''});
+    const [error, setError] = useState('');
 
      const handleChange = (e) => {
-        const {name, email, password} = e.target;
-        setFormData( prevState => ({...prevState, [name]: value}));
+        const {name, value} = e.target;
+        setFormData({ ...formData,
+           [name]: value});
      }
 
      const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
 
+        // Basic Validation
+        if (!formData.username || !formData.password || !formData.email) {
+          setError('All fields are required');
+          return
+        }
+
+        setError('');
+        console.log('Form Submitted', formData);
+
      }
   
     return(
-        <Form  onSubmit={handleSubmit}>
+        <form  onSubmit={handleSubmit}>
+             {error && <p style={{color: 'red'}}>{error}</p>}
             <input
               type='text'
-              name='name'
-              value={formData.name}
+              name='username'
+              value={formData.username}
               onChange={handleChange}
             />
 
             <input
-              type='text'
+              type='email'
               name='email'
               value={formData.email}
+              onChange={handleChange}
             />
 
             <input
               type='password'
               name='password'
               value={formData.password}
+              onChange={handleChange}
             />
 
             <button type='submit'>Submit</button>
-        </Form>
+        </form>
 
     )
 }
+export default RegisterationForm;
