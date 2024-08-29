@@ -4,7 +4,7 @@ const RegisterationForm = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [errors, setErrors] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,14 +39,14 @@ const handleSubmit = (e) => {
   }
  
 
-  setError({});
+  setErrors({});
   console.log('Form Submitted', {username, password, email});
 
 }
 
 return (
   <form onSubmit={handleSubmit}>
-    {error && <p style={{ color: 'red' }}>{error}</p>}
+    {errors && <p style={{ color: 'red' }}>{errors}</p>}
     <input
       type='text'
       name='username'
