@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import Yup from 'yup';
 
-const validationSchema = Yup.oobject ({
+const validationSchema = Yup.object ({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().password('Invalid password').required('Password is required')
