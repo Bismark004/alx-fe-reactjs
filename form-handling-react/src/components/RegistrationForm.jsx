@@ -17,16 +17,30 @@ const RegisterationForm = () => {
 const handleSubmit = (e) => {
   e.preventDefault();
 
-  console.log(username, password, email); 
+  const newErrors = {};
 
-  // Basic Validation
-  if (!username || !password || !email) {
-    setError('All fields are required');
-    return
+  if (!username) {
+    newErrors.username = 'Username is required'
   }
 
-  setError('');
-  console.log('Form Submitted', username, password, email);
+  if (!password) {
+    newErrors.password= 'Password is required'
+  }
+
+  if (!email) {
+    newErrors.email = 'Username is required'
+  }
+
+  if (Object.keys(newErrors).length > 0) {
+    setError(newErrors);
+    return;
+
+
+  }
+ 
+
+  setError({});
+  console.log('Form Submitted', {username, password, email});
 
 }
 
