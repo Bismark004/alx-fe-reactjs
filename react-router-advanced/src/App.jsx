@@ -16,7 +16,11 @@ function App() {
             path="/profile/*"
             element={<ProtectedRoute isAuthenticated={isLoggedIn} element={<Profile />} />}
           />
-          <Route path="/blog/:id" element={<BlogPost />} />
+<<<<<<< HEAD
+
+=======
+            <Route path="/blog/:id" element={<BlogPost />} />
+>>>>>>> be83553f4aeb9cf658e486019f04a5fd58d4c438
         </Routes>
       </Router>
     );
