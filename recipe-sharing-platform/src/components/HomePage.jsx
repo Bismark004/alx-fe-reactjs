@@ -3,7 +3,7 @@ import recipeData from '../data.json';
 import CardLayout from './CardLayout';
 
 const HomePage = () => {
-    const [recipes , setRecipes] = useState('');
+    const [recipes , setRecipes] = useState([]);
 
     useEffect(() => {
         setRecipes(recipeData);
