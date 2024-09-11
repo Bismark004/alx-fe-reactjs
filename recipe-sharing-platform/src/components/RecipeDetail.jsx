@@ -1,18 +1,17 @@
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import recipeData from '../data.json';
 
 const RecipeDetail = () => {
-    const {id} = useParams();
-    const [recipe, setRecipe] = useState(null);
-    
+    const { id } = useParams();
+    const [recipe, setRecipe] = useState(null); // Initialize as null
     
     useEffect(() => {
         const selectedRecipe = recipeData.find((recipe) => recipe.id === parseInt(id));
         setRecipe(selectedRecipe);
     }, [id]);
 
-    if (!recipe) return <div>Loading....</div>;
+    if (!recipe) return <div>Loading...</div>; // Adjust loading message
 
     return (
         <div className='max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-4'>
@@ -21,24 +20,28 @@ const RecipeDetail = () => {
                     {recipe.title}
                 </h1>
 
-                <img src={recipe.image} alt={recipe.title}
-                 className='w-full h-64 object-cover rounded-lg mb-6'
+                <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className='w-full h-64 object-cover rounded-lg mb-6'
                 />
 
                 <h2 className='text-xl text-white font-bold mb-2'>Ingredients</h2>
                 <ul className='list-disc list-inside text-gray-400 mb-6'>
                     {recipe.ingredients.map((ingredient, index) => (
                         <li key={index}>{ingredient}</li>
-                    ))};
-                    
+                    ))}
                 </ul>
-                <h2 className="text-xl text-white font-bold mb-2">Instructions</h2>
-                <p className="text-gray-300 leading-relaxed">{recipe.instructions}</p>
 
-                
+                <h2 className="text-xl text-white font-bold mb-2">Instructions</h2>
+                <ol className="list-decimal list-inside text-gray-300 leading-relaxed">
+                    {recipe.instructions.map((step, index) => (
+                        <li key={index}>{step}</li>
+                    ))}
+                </ol>
             </div>
         </div>
-
-    )
+    );
 }
+
 export default RecipeDetail;

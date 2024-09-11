@@ -1,23 +1,18 @@
 import { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import recipeData from '../data.json';
 
-const CardLayout = (props) => {
-  const {id, title, summary, image } = props;
-
+const CardLayout = ({ id, title, summary, image }) => {
   return (
-    <link to={`/recipe/${id}`}>
     <div className="w-full bg-gray-900 hover:bg-gray-800 rounded shadow overflow-hidden flex flex-col md:flex-row">
       <div className="w-full md:w-2/5 h-80">
         <img src={image} alt={title} className="object-center object-cover w-full h-full" />
       </div>
-
       <div className="w-full md:w-2/5 text-left p-6 md:p-4 space-y-2">
         <h1 className="text-xl text-white font-bold">{title}</h1>
         <p className="text-base leading-relaxed text-gray-500 font-normal">{summary}</p>
       </div>
     </div>
-    </link>
   );
 };
 
@@ -29,12 +24,18 @@ const HomePage = () => {
   }, []);
 
   const recipeCards = recipes.map((recipe) => (
-    <CardLayout
+    <Link
       key={recipe.id}
-      title={recipe.title}
-      summary={recipe.summary}
-      image={recipe.image}
-    />
+      to={`/recipe/${recipe.id}`} // Set the link to the recipe detail page
+      className="no-underline" // Optional: remove underline from links
+    >
+      <CardLayout
+        id={recipe.id}
+        title={recipe.title}
+        summary={recipe.summary}
+        image={recipe.image}
+      />
+    </Link>
   ));
 
   return (
@@ -43,7 +44,6 @@ const HomePage = () => {
         <div className="text-center pb-12">
           <h1 className="text-base font-bold text-indigo-600">RECIPES</h1>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {recipeCards}
         </div>
