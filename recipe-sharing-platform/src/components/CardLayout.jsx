@@ -1,30 +1,34 @@
-const CardLayout = (props) => {
-    const { title , summary , image} = props;
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import recipeData from '../data.json';
 
-    return (
-       
-            
-                <div className="w-full bg-gray-900 hover:bg-gray-800 rounded shadow overflow-hidden flex flex-col md:flex-row">
-                    <div className="w-full md:w-2/5 h-80">
-                      <img src={image} alt={title}  className="object-center object-cover w-full h-full"/>
+const RecipeDetails = () => {
+  const { id } = useParams();
+  const [recipe, setRecipe] = useState(null);
 
-                    </div>
+  useEffect(() => {
+    const selectedRecipe = recipeData.find((recipe) => recipe.id === parseInt(id));
+    setRecipe(selectedRecipe);
+  }, [id]);
 
-                    <div className="w-full md:w-2/5 text-left p-6 md:p-4 space-y-2">
-                      <h1 className="text-xl text-white font-bold">{title}</h1>
-                      <p className="text-base leading-relaxed text-gray-500 font-normal">{summary}</p>
-                      
+  if (!recipe) return <div>Loading...</div>;
 
-                    </div>
-                 
-                  
+  return (
+    <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-4">
+      <div className="bg-gray-800 p-6 rounded-lg">
+        <h1 className="text-3xl font-bold text-white mb-4">{recipe.title}</h1>
+        <img src={recipe.image} alt={recipe.title} className="w-full h-64 object-cover rounded-lg mb-6"/>
+        <h2 className="text-xl text-white font-bold mb-2">Ingredients</h2>
+        <ul className="list-disc list-inside text-gray-400 mb-6">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <h2 className="text-xl text-white font-bold mb-2">Instructions</h2>
+        <p className="text-gray-300 leading-relaxed">{recipe.instructions}</p>
+      </div>
+    </div>
+  );
+};
 
-                </div>
-              
-            
-           
-
-        
-    )
-}
-export default CardLayout;
+export default RecipeDetails;

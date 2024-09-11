@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import recipeData from '../data.json';
 
 const CardLayout = (props) => {
-  const { title, summary, image } = props;
+  const {id, title, summary, image } = props;
 
   return (
+    <link to={`/recipe/${id}`}>
     <div className="w-full bg-gray-900 hover:bg-gray-800 rounded shadow overflow-hidden flex flex-col md:flex-row">
       <div className="w-full md:w-2/5 h-80">
         <img src={image} alt={title} className="object-center object-cover w-full h-full" />
@@ -15,6 +17,7 @@ const CardLayout = (props) => {
         <p className="text-base leading-relaxed text-gray-500 font-normal">{summary}</p>
       </div>
     </div>
+    </link>
   );
 };
 
