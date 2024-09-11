@@ -29,9 +29,10 @@ const HomePage = () => {
                    <h1 className="text-base font-bold text-indigo-600">RECIPES</h1>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6">
-                  {recipeCards} {/* Render the mapped recipe cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {recipeCards} 
                 </div>
+    
             </div>
         </div>
 

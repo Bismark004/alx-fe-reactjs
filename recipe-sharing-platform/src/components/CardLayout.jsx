@@ -3,8 +3,8 @@ const CardLayout = (props) => {
 
     return (
        
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="w-full bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+            
+                <div className="w-full bg-gray-900 hover:bg-gray-800 rounded shadow overflow-hidden flex flex-col md:flex-row">
                     <div className="w-full md:w-2/5 h-80">
                       <img src={image} alt={title}  className="object-center object-cover w-full h-full"/>
 
@@ -21,7 +21,7 @@ const CardLayout = (props) => {
 
                 </div>
               
-            </div>
+            
            
 
         
