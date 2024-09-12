@@ -32,6 +32,9 @@ const AddRecipeForm = () => {
             {errors.instructions && <span className='text-red-500'>Title is required</span>}
 
 
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded-lg">Submit</button>
+
+
 
 
 
