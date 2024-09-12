@@ -1,46 +1,72 @@
-import {useForm} from 'react-hook-form';
-
+import { useState } from "react";
 
 const AddRecipeForm = () => {
-    const {register, handleSubmit, formState:{ errors}} = useForm();
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [preparationSteps, setPreparationSteps] = useState("");
+  const [errors, setErrors] = useState({});
 
-    const onSubmit = (data) => {
-        console.log(data);
+ 
+
+  const validateForm = () => {
+    const errors = {};
+    if (!title) errors.title = "Recipe title is required";
+    if (!ingredients || ingredients.split('\n').length < 2) {
+      errors.ingredients = "At least two ingredients are required";
     }
-
-    return (
-        <form onSubmit={handleSubmit(onSubmit)} className='max-w-lg mx-auto flex flex-col md:flex-row space-y-4'>
-            <input
-            {...register("title",{required: true})}
-            className='border p-2 w-full rounded-lg'
-            placeholder='Recipe Title'
-            />
-            {errors.title && <span className='text-red-500'>Title is required</span>}
-
-            <textarea
-            {...register("ingredients",{
-                required: true,
-                validate: value => value.split('\n').lenght > 1 || "At least two ingredients are required"})}
-            className='border p-2 w-full rounded-lg'
-            placeholder='Ingredients (one per line)'
-            />
-            {errors.ingredients && <span className='text-red-500'>{errors.ingredients.message}</span>}
-
-            <textarea
-            {...register("instructions",{required: true})}
-            className='border p-2 w-full rounded-lg'
-            placeholder='Preparation steps'
-            />
-            {errors.instructions && <span className='text-red-500'>instructions is required</span>}
+    if (!preparationSteps) errors.preparationSteps = "Preparation steps are required";
+    return errors;
+  };
 
 
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-lg">Submit</button>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length === 0) {
+      // Submit form data
+      console.log({ title, ingredients, preparationSteps });
+      // Reset form after submission (optional)
+      setTitle("");
+      setIngredients("");
+      setPreparationSteps("");
+    } else {
+      setErrors(validationErrors);
+    }
+  };
+  
+  
 
-
-
-
-
-        </form>
-    )
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Recipe Title"
+        className="border p-2 w-full rounded-lg"
+      />
+      {errors.title && <span className="text-red-500">{errors.title}</span>}
+  
+      <textarea
+        value={ingredients}
+        onChange={(e) => setIngredients(e.target.value)}
+        placeholder="Ingredients (one per line)"
+        className="border p-2 w-full rounded-lg"
+      />
+      {errors.ingredients && <span className="text-red-500">{errors.ingredients}</span>}
+  
+      <textarea
+        value={preparationSteps}
+        onChange={(e) => setPreparationSteps(e.target.value)}
+        placeholder="Preparation Steps"
+        className="border p-2 w-full rounded-lg"
+      />
+      {errors.preparationSteps && <span className="text-red-500">{errors.preparationSteps}</span>}
+  
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded-lg">
+        Submit
+      </button>
+    </form>
+  );
+  
 }
-export default AddRecipeForm;
