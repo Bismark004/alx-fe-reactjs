@@ -39,7 +39,7 @@ const AddRecipeForm = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Recipe Title"
-            className="border p-2 w-full rounded-lg shadow-sm"
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
           />
           {errors.title && <span className="text-red-500">{errors.title}</span>}
         </div>
@@ -50,7 +50,7 @@ const AddRecipeForm = () => {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="Ingredients (one per line)"
-            className="border p-2 w-full rounded-lg shadow-sm"
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
           />
           {errors.ingredients && <span className="text-red-500">{errors.ingredients}</span>}
         </div>
@@ -61,14 +61,14 @@ const AddRecipeForm = () => {
             value={preparationSteps}
             onChange={(e) => setPreparationSteps(e.target.value)}
             placeholder="Preparation Steps"
-            className="border p-2 w-full rounded-lg shadow-sm"
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
           />
           {errors.preparationSteps && <span className="text-red-500">{errors.preparationSteps}</span>}
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white font-bold p-2 w-full rounded-lg hover:bg-blue-600"
+          className="bg-blue-500 text-white font-bold p-2 w-full rounded-lg hover:bg-blue-600 md:w-1/2"
         >
           Submit
         </button>
