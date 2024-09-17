@@ -39,7 +39,7 @@ const AddRecipeForm = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Recipe Title"
-            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  
           />
           {errors.title && <span className="text-red-500">{errors.title}</span>}
         </div>
@@ -50,7 +50,7 @@ const AddRecipeForm = () => {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="Ingredients (one per line)"
-            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  
           />
           {errors.ingredients && <span className="text-red-500">{errors.ingredients}</span>}
         </div>
@@ -61,7 +61,7 @@ const AddRecipeForm = () => {
             value={preparationSteps}
             onChange={(e) => setPreparationSteps(e.target.value)}
             placeholder="Preparation Steps"
-            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  // Responsive for medium screens
+            className="border p-2 w-full rounded-lg shadow-sm md:w-1/2"  
           />
           {errors.preparationSteps && <span className="text-red-500">{errors.preparationSteps}</span>}
         </div>
