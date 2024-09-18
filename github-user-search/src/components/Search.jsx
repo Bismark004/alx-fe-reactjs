@@ -40,7 +40,8 @@ function Search() {
       {userData && (
         <div>
           <img src={userData.avatar_url} alt={userData.name} width="100" />
-          <h2>{userData.name}</h2>
+          <h2>{userData.name ? userData.name : userData.login}</h2>
+          <p>Useername: {userData.login}</p>
           <p><a href={userData.html_url} target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
         </div>
       )}
