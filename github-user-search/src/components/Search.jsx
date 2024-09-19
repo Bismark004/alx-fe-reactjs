@@ -35,14 +35,15 @@ function Search() {
   };
 
   return (
-    <div className='w-full bg-black'>
-       <h1 className='object-center'>Github user Search</h1>
-      <form onSubmit={handleSearch}>
+    <div className=' bg-gray-900 text-white min-w-full mx-auto h-screen text-center p-20'>
+       <h1 className='text-3xl font-bold text-center uppercase mb-10'>Github user Search</h1>
+      <form onSubmit={handleSearch} className=' flex flex-col space-y-4'>
         <input
           type="text"
           placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className='w-80 p-3 border border-gray-700 rounded-lg'
         />
 
         <input
@@ -50,6 +51,7 @@ function Search() {
         placeholder='Enter Location'
         value={location}
         onChange = {(e) => setLocation(e.target.value)}
+         className='w-80 p-3 border border-gray-700 rounded-lg'
         />
 
         <input
@@ -57,6 +59,7 @@ function Search() {
         placeholder = 'Enter minimum number of repos'
         value={minRepos}
         onChange= {(e) => setMinRepos(e.target.value)}
+         className='w-80 p-3 border border-gray-700 rounded-lg'
 
         />
 
