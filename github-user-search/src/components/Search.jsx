@@ -37,6 +37,8 @@ function Search() {
   return (
     <div className=' bg-gray-900 text-white min-w-full mx-auto h-screen text-center p-20'>
        <h1 className='text-3xl font-bold text-center uppercase mb-10'>Github user Search</h1>
+
+       <div className='w-full flex justify-center text-black'>
       <form onSubmit={handleSearch} className=' flex flex-col space-y-4'>
         <input
           type="text"
@@ -64,8 +66,11 @@ function Search() {
         />
 
 
-        <button type="submit">Search</button>
+        <button type="submit"  className='w-80 p-3 border border-gray-700 rounded-lg'
+        >Search
+        </button>
       </form>
+      </div>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
