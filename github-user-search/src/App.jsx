@@ -2,10 +2,9 @@ import Search from './components/Search';
 
 const App = () => {
   return (
-    <ddiv>
-      <h1>Github user Search</h1>
+    <div className='w-full h-screen bg-gray-950'>
       <Search/>
-    </ddiv>
+    </div>
   )
 }
 export default App;

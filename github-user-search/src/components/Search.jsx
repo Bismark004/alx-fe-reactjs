@@ -35,7 +35,8 @@ function Search() {
   };
 
   return (
-    <div className='max-w-xl overflow-hidden bg-white'>
+    <div className='w-full bg-black'>
+       <h1 className='object-center'>Github user Search</h1>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -69,7 +70,7 @@ function Search() {
         <div>
           <img src={userData.avatar_url} alt={userData.name} width="100" />
           <h2>{userData.name ? userData.name : userData.login}</h2>
-          <p>Useername: {userData.login}</p>
+          <p>Username: {userData.login}</p>
           <p><a href={userData.html_url} target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
         </div>
       )}
