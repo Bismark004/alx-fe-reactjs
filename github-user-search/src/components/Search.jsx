@@ -35,7 +35,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className='max-w-xl overflow-hidden bg-white'>
       <form onSubmit={handleSearch}>
         <input
           type="text"
