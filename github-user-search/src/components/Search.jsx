@@ -66,8 +66,8 @@ function Search() {
         />
 
 
-        <button type="submit"  className='w-80 p-3 border border-gray-700 rounded-lg'
-        >Search
+        <button type="submit"  className='w-80 p-3 border border-gray-700 rounded-lg text-white text-lg font-medium hover:bg-cyan-600 transition-colors'>
+        Search
         </button>
       </form>
       </div>
