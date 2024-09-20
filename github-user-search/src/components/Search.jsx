@@ -81,39 +81,11 @@ function Search() {
       {error && <p>{error}</p>}
 
 
-      {userData && (
-        <div className='mt-6'>
-          <img src={userData.avatar_url} alt={userData.name} width='100' />
-          <h2>{userData.name ? userData.name : userData.login}</h2>
-          <p>Username: {userData.login}</p>
-          <p>
-            <a href={userData.html_url} target='_blank' rel='noopener noreferrer'>
-              GitHub Profile
-            </a>
-          </p>
+      
 
-          
-          <h3 className='text-xl mt-6'>Repositories:</h3>
-          <ul className='list-disc list-inside'>
-            {repos.map((repo) => (
-              <li key={repo.id}>
-                <a
-                  href={repo.html_url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-blue-400 hover:underline'
-                >
-                  {repo.name}
-                </a>
-                <p>{repo.description || 'No description available'}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      </div>
-
-  )
+      
+    </div>
+  );
 }
 
 export default Search;
