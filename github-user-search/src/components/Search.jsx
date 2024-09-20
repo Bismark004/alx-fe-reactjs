@@ -20,7 +20,7 @@ function Search() {
       const data = await fetchUserData(username, location, minRepos);
       setUserData(data);
     } catch (err) {
-      setError('No users found based on the search criteria');
+      setError('Looks like we cant find the user');
     } finally {
       setLoading(false);
     }
