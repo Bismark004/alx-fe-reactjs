@@ -1,46 +1,34 @@
-
 import axios from 'axios';
 
 export const fetchUserData = async (query, location, minRepos) => {
-
   try {
-    let searchQuery = `${query}`;
-    
+    // Build the search query for GitHub's API
+    let searchQuery = query;
+
+    // Add location to the query if provided
     if (location) {
       searchQuery += `+location:${location}`;
     }
 
+    // Add minimum number of repositories to the query if provided
     if (minRepos) {
-      searchQuery += `repos:>=${minRepos}`;
+      searchQuery += `+repos:>=${minRepos}`;
     }
-     
 
-    const response = await axios.get(`https://api.github.com/users`,{
+    // Make the API call to GitHub's search users endpoint
+    const response = await axios.get('https://api.github.com/search/users', {
       params: {
-        q: searchQuery,
+        q: searchQuery, // The search query parameter for GitHub's API
       },
     });
+
+    // Return the array of users that match the query
     return response.data.items;
   } catch (error) {
-    if (error.response) {
-      if (error.response === 403) {
-        throw new Error('Api rate limit exceeded. Please try again later');
-      }
-      throw new Error('unable to fetch users at the moment. Please try again later');
-
-    } else if (error.request) {
-      throw new Error ('Network error. Please check your internet connection.');
+    if (error.response && error.response.status === 403) {
+      throw new Error('API rate limit exceeded. Please try again later.');
     } else {
-      throw new Error ('An error occured. Please try again');
+      throw new Error('Failed to fetch users. Please try again.');
     }
-  }
-};
-
-export const fetchUserRepos = async (username) => {
-  try {
-    const response = await axios.get(`https://api.github.com/${username}/repos`);
-    return response.json();
-  } catch (error) {
-    throw new Error('User not found');
   }
 };
