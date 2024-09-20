@@ -110,11 +110,10 @@ function Search() {
             ))}
           </ul>
         </div>
+      )}
+      </div>
 
-
-
-    </div>
-  );
+  )
 }
 
 export default Search;
