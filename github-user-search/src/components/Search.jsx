@@ -1,12 +1,13 @@
 // src/components/Search.jsx
 import { useState } from 'react';
-import { fetchUserData } from '../services/githubService';
+import { fetchUserData, fetchUserRepos } from '../services/githubService';
 
 function Search() {
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
   const [minRepos, setMinRepos] = useState('');
   const [userData, setUserData] = useState(null);
+  const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,6 +16,7 @@ function Search() {
     setLoading(true);
     setError(null);
     setUserData(null);
+    setRepos([]);
 
     try {
       const data = await fetchUserData(username);
@@ -27,6 +29,9 @@ function Search() {
         throw new Error ('User not found based on the search criteria');
       } 
       setUserData(data);
+
+      const userRepos = await fetchUserRepos(username);
+      setUserRepos(userRepos);
     } catch (err) {
       setError('Looks like we cant find the user');
     } finally {
@@ -74,14 +79,40 @@ function Search() {
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
+
+
       {userData && (
-        <div>
-          <img src={userData.avatar_url} alt={userData.name} width="100" />
+        <div className='mt-6'>
+          <img src={userData.avatar_url} alt={userData.name} width='100' />
           <h2>{userData.name ? userData.name : userData.login}</h2>
           <p>Username: {userData.login}</p>
-          <p><a href={userData.html_url} target="_blank" rel="noopener noreferrer">GitHub Profile</a></p>
+          <p>
+            <a href={userData.html_url} target='_blank' rel='noopener noreferrer'>
+              GitHub Profile
+            </a>
+          </p>
+
+          
+          <h3 className='text-xl mt-6'>Repositories:</h3>
+          <ul className='list-disc list-inside'>
+            {repos.map((repo) => (
+              <li key={repo.id}>
+                <a
+                  href={repo.html_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-blue-400 hover:underline'
+                >
+                  {repo.name}
+                </a>
+                <p>{repo.description || 'No description available'}</p>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
+
+
+
     </div>
   );
 }
